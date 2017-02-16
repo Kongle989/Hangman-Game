@@ -1,0 +1,36 @@
+h1 {
+    text-align: center;
+    font-size: 5em;
+}
+
+.container {
+    overflow: auto;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-width: 5px;
+}
+
+.main, .letters, .word {
+    width: 45%;
+    float: left;
+    border-style: dashed;
+    border-width: 2px;
+    text-align: center;
+    font-size: 2em;
+    margin: 5px;
+    padding: 10px;
+}
+
+.main {
+    height: 244px;
+}
+
+.letters {
+    height: 154px;
+}
+
+.word {
+    height: 56px;
+}
