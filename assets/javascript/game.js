@@ -1,25 +1,25 @@
 var hangman;
+var letterBank = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
+    "t",
+    "u", "v", "w", "x", "y", "z"];
 $(document).ready(function () {
 
-    var letterBank = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
-        "t",
-        "u", "v", "w", "x", "y", "z"];
+    var sample = letterBank;
 
     hangman = {
         wordBank: ["mickey", "donald", "goofy", "stitch", "tinkerbell", "pooh", "pluto", "ariel", "cinderella", "mulan",
             "simba", "woody"],
 
         userInput: "",
-        sample: "",
+
         remainingLetters: "",
         guesses: 6,
         currentWord: "",
         revealWord: "",
         // Start new game
         newGame: function () {
-            // Write word bank to page
-            this.sample = letterBank;
-            this.remainingLetters = this.sample;
+            // Write letter bank to page
+            this.remainingLetters = sample;
             $(".letters").html("Pick a letter<hr>");
             for (var i = 0; i < this.remainingLetters.length; i++) {
                 $(".letters").append(this.remainingLetters[i] + " ");
@@ -89,7 +89,7 @@ $(document).ready(function () {
 
 
         console.log(letterBank);
-        console.log(hangman.sample);
+        console.log(sample);
         console.log(hangman.remainingLetters);
 
 
