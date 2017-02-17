@@ -1,22 +1,28 @@
+var hangman;
 $(document).ready(function () {
 
-    var remainingLetters =  "";
+    var letterBank = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
+        "t",
+        "u", "v", "w", "x", "y", "z"];
 
+    hangman = {
+        wordBank: ["mickey", "donald", "goofy", "stitch", "tinkerbell", "pooh", "pluto", "ariel", "cinderella", "mulan",
+            "simba", "woody"],
 
-    var hangman = {
-        wordBank: ["mickey", "donald", "goofy", "stitch", "tinkerbell", "pooh", "pluto", "ariel", "cinderella", "mulan", "simba", "woody"],
-        letterBank: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
         userInput: "",
+        sample: "",
+        remainingLetters: "",
         guesses: 6,
         currentWord: "",
         revealWord: "",
         // Start new game
         newGame: function () {
             // Write word bank to page
-            remainingLetters = this.letterBank;
+            this.sample = letterBank;
+            this.remainingLetters = this.sample;
             $(".letters").html("Pick a letter<hr>");
-            for (var i = 0; i < remainingLetters.length; i++) {
-                $(".letters").append(remainingLetters[i] + " ");
+            for (var i = 0; i < this.remainingLetters.length; i++) {
+                $(".letters").append(this.remainingLetters[i] + " ");
             }
             // Select word at random and write blank spaces to page
             currentWord = "";
@@ -33,11 +39,11 @@ $(document).ready(function () {
 
         // Check if selected letter is part of current word
         letterExist: function () {
-            if (remainingLetters.indexOf(userInput) == -1) {
+            if (this.remainingLetters.indexOf(userInput) == -1) {
                 return;
             }
             else {
-                this.letterUsed(remainingLetters.indexOf(userInput));
+                this.letterUsed(this.remainingLetters.indexOf(userInput));
                 if (currentWord.indexOf(userInput) == -1) {
                     this.guesses--;
                 }
@@ -53,10 +59,10 @@ $(document).ready(function () {
         },
         // Remove letters used from letter bank
         letterUsed: function (index) {
-            remainingLetters.splice(index, 1, " ");
+            this.remainingLetters.splice(index, 1);
             $(".letters").html("Pick a letter<hr>");
-            for (var i = 0; i < remainingLetters.length; i++) {
-                $(".letters").append(remainingLetters[i] + " ");
+            for (var i = 0; i < this.remainingLetters.length; i++) {
+                $(".letters").append(this.remainingLetters[i] + " ");
             }
         },
         // Reveal letters that is correctly selected
@@ -80,8 +86,12 @@ $(document).ready(function () {
         userInput = e.key;
         console.log(currentWord);
         hangman.letterExist();
-        console.log(hangman.letterBank);
-        console.log(remainingLetters);
+
+
+        console.log(letterBank);
+        console.log(hangman.sample);
+        console.log(hangman.remainingLetters);
+
 
         setTimeout(function () {
             if (revealWord.indexOf("_") === -1) {
