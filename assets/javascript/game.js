@@ -20,7 +20,7 @@ $(document).ready(function () {
         newGame: function () {
             // Write letter bank to page
             this.remainingLetters = letterBank.slice();
-            $(".letters").html("Pick a letter<hr>");
+            $(".letters").html("Key in a letter<hr>");
             for (var i = 0; i < this.remainingLetters.length; i++) {
                 $(".letters").append(this.remainingLetters[i] + " ");
             }
@@ -55,9 +55,7 @@ $(document).ready(function () {
                     this.revealLetter();
                 }
                 if (this.guesses === 0) {
-                    setTimeout(function () {
-                    }, 1000);
-                    alert("You ran out of guesses!");
+                        alert("You ran out of guesses!");
                     loses++;
                     this.newGame();
                 }
@@ -67,7 +65,7 @@ $(document).ready(function () {
         // Remove letters used from letter bank
         letterUsed: function (index) {
             this.remainingLetters.splice(index, 1);
-            $(".letters").html("Pick a letter<hr>");
+            $(".letters").html("Key in a letter<hr>");
             for (var i = 0; i < this.remainingLetters.length; i++) {
                 $(".letters").append(this.remainingLetters[i] + " ");
             }
